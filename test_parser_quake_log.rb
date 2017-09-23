@@ -24,4 +24,11 @@ class TestParserQuakeLog< Test::Unit::TestCase
 						@parser_log_quake.send(:kill?, 
 							' 21:07 Kill: 1022 2 22: <world> killed Isgalamido by MOD_TRIGGER_HURT'))
 	end
+
+	def test_get_player_info?
+		assert_equal('Isgalamido', 
+						@parser_log_quake.send(:get_player_info,
+							' 20:38 ClientUserinfoChanged: 2 n\Isgalamido\t\0\model\uriel/zael\hmodel\uriel/'))
+		
+	end
 end

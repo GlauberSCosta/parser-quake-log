@@ -1,8 +1,3 @@
-require File.expand_path('parser_quake_errors_class')
-require File.expand_path('game')
-require File.expand_path('player')
-
-
 class Array
     def sum
         self.inject{|sum,x| sum + x }
@@ -78,6 +73,10 @@ class ParserQuakeLog
 
 	def player_info?(line)
 		line=~/^(\s\d{2}|\s\s\d):\d{2} ClientUserinfoChanged:/ ? true : false	
+	end
+
+	def get_player_info(line)
+		line.match(/n\\.+\\t\\\d/).to_s.gsub(/n\\|\\t\\\d/,'')
 	end
 	
 end
