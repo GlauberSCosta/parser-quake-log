@@ -31,4 +31,11 @@ class TestParserQuakeLog< Test::Unit::TestCase
 							' 20:38 ClientUserinfoChanged: 2 n\Isgalamido\t\0\model\uriel/zael\hmodel\uriel/'))
 		
 	end
+
+	def teste_get_death?
+		assert_equal('MOD_RAILGUN',
+						@parser_log_quake.send(:get_death,
+							'2:43 Kill: 3 4 10: Isgalamido killed Zeh by MOD_RAILGUN'))
+	end
+	
 end

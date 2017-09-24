@@ -1,3 +1,6 @@
+require File.expand_path('game')
+require File.expand_path('parser_quake_log_errors_class')
+
 class Array
     def sum
         self.inject{|sum,x| sum + x }
@@ -43,11 +46,15 @@ class ParserQuakeLog
 	def initialize(path)
 		string = File.open(path, 'rb') { |file| file.read}
 		
+		@games = Array.new
+		@cont = 0
 		string.each_line do |line| 
-			
 			if start_game?(line)
 				#registrar uma nova partida partida
-								
+				
+				@games << Game.new(@cont)
+				@cont+=1
+
 			elsif player_info?(line)
 				#identificar um jogador
 			elsif kill?(line)
@@ -62,6 +69,11 @@ class ParserQuakeLog
 	
 
 
+
+	def games
+		@games
+	end
+#-------
 	def start_game?(line)
 		line=~/^\s{1,2}\d{1,2}:\d{2} InitGame:/ ? true : false
 		
@@ -79,6 +91,9 @@ class ParserQuakeLog
 		line.match(/n\\.+\\t\\\d/).to_s.gsub(/n\\|\\t\\\d/,'')
 	end
 	
+	def get_death(line)
+		line.match(/(#{@@means_of_death.join('|')})$/).to_s
+	end
 end
 
 
