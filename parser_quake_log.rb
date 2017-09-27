@@ -1,5 +1,6 @@
 require File.expand_path('game')
 require File.expand_path('parser_quake_log_errors_class')
+require File.expand_path('player')
 
 class Array
     def sum
@@ -56,7 +57,9 @@ class ParserQuakeLog
 				@cont+=1
 
 			elsif player_info?(line)
-				#identificar um jogador
+				player = Player.new(get_player_info(line))
+				@games.last.add_player(player)
+
 			elsif kill?(line)
 				#obter informacoes de uma morte
 				# quem matou

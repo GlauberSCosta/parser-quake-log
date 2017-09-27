@@ -1,7 +1,6 @@
-require "./parser_quake_log"
-require "test/unit"
 
-class TestParserQuakeLog< Test::Unit::TestCase
+
+class TestParserQuakeLog < Test::Unit::TestCase
 	
 	def setup
 		@parser_log_quake = ParserQuakeLog.new('games.log.original.txt')
@@ -37,5 +36,5 @@ class TestParserQuakeLog< Test::Unit::TestCase
 						@parser_log_quake.send(:get_death,
 							'2:43 Kill: 3 4 10: Isgalamido killed Zeh by MOD_RAILGUN'))
 	end
-	
+
 end
