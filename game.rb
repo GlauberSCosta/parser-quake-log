@@ -44,7 +44,7 @@ class Game
 			deaths_by_means.merge!(p.deaths_by_means){|k,v1,v2| v1+v2}
 		end
 
-		"game_#{@id}:\n"+
+		"game_#{@id+1}:\n"+
     		     "{"+
     		     	"\ttotal_kills: #{@total_kills}\n"+
     		     	"\tplayers:\n"+
