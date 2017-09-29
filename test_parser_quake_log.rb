@@ -37,4 +37,21 @@ class TestParserQuakeLog < Test::Unit::TestCase
 							'2:43 Kill: 3 4 10: Isgalamido killed Zeh by MOD_RAILGUN'))
 	end
 
+	def test_get_cause_of_death()
+		assert_equal('MOD_ROCKET_SPLASH', 
+						@parser_log_quake.send(:get_cause_of_death,
+							' 22:06 Kill: 2 3 7: Isgalamido killed Mocinha by MOD_ROCKET_SPLASH').strip)
+	end
+
+	
+
+	def test_get_killer()
+		assert_equal('Isgalamido', 
+						@parser_log_quake.send(:get_killer,
+							' 22:06 Kill: 2 3 7: Isgalamido killed Mocinha by MOD_ROCKET_SPLASH'))
+	end 
+
+	def test_get_victim()
+		assert_equal('Zeh', @parser_log_quake.send(:get_victim, ' 2:11 Kill: 2 4 6: Dono da Bola killed Zeh by MOD_ROCKET'))
+	end
 end

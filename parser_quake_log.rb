@@ -65,12 +65,29 @@ class ParserQuakeLog
 				# quem matou
 				# vitima
 				# causa da morte
+
+				mean = get_cause_of_death(line)
+				killer = get_killer(line)
+				victim = get_victim(line)
+				
+				@games.last.add_kill
+
+				
+
+				if killer != "<world>"
+					player1 = @games.last.player(killer)
+					player1.add_kills
+					player1.update_kills_by_means(mean)
+					
+				end
+				player2 = @games.last.player(victim)
+				player2.add_deaths
+				player2.update_deaths_by_means(mean)
+				
 			end
 		end		
 	end
 	
-	
-
 
 
 	def games
@@ -96,6 +113,18 @@ class ParserQuakeLog
 	
 	def get_death(line)
 		line.match(/(#{@@means_of_death.join('|')})$/).to_s
+	end
+
+	def get_victim(line)
+		line.match(/(#{(@games.last.players_names << '<world>').join('|')}) by/).to_s.gsub!(/ by$/,'')
+	end
+
+	def get_cause_of_death(line)
+		line.strip.match(/(#{@@means_of_death.join('| ')})$/).to_s
+	end
+	
+	def get_killer(line)
+		line.match(/(#{(@games.last.players_names << '<world>').join('|')}) killed/).to_s.gsub!(/ killed$/,'')
 	end
 end
 
