@@ -4,6 +4,7 @@ Objetivo: Criar um parser de um arquivo de log do jogo Quake
 Autor: Gláuber Costa
 
 Classes criadas:
+
 	game
 
 	main_parser_quake_log
@@ -31,7 +32,7 @@ Execução:
 
 
 		Ex. do formato de impressão da partida, no caso a partida número 20:
-		
+
 
 				game_20
 				{       total_kills: 69
