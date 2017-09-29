@@ -5,20 +5,33 @@ Autor: Gláuber Costa
 
 Classes criadas:
 	game
+
 	main_parser_quake_log
+
 	parser_quake_log
+
 	parser_quake_log_errors_class
+
 	player
+
 	test_game
+
 	test_main_parser_quake
+
 	test_parser_quake_log
+
 	test_player
 
+
 Execução:
+
 	- Para imprimir o relatório com os dados de todas as partidas do Log basta executar o arquivo:
+
 		- main_parser_quake_log
 
+
 		Ex. do formato de impressão da partida, no caso a partida número 20:
+		
 
 				game_20
 				{       total_kills: 69
@@ -50,7 +63,9 @@ Execução:
 				             MOD_TRIGGER_HURT: 2
 				    }
 
+
 	- Para executar todos os testes basta executar o arquivo:
+
 		- test_main_parser_quake 
 
 
