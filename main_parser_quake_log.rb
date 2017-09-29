@@ -11,3 +11,4 @@ puts   parser.games.size
 puts "\n\n---- FIM " + labelQtdPartidas + "---------"
 
 puts parser.games
+
