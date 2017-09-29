@@ -1,5 +1,6 @@
 
 Objetivo: Criar um parser de um arquivo de log do jogo Quake
+
 Autor: Gláuber Costa
 
 Classes criadas:
