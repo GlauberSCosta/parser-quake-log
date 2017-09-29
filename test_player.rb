@@ -46,4 +46,34 @@ class TestPlayer < Test::Unit::TestCase
 		p.update_deaths_by_means("bereta")
 		assert_equal({"bereta"=>2, "shotgun" => 1}, p.deaths_by_means)
 	end
+
+	def test_get_hash_player
+		player=Player.new "glauber_costa"
+		player.add_kills
+		player.add_deaths
+		player.update_kills_by_means("bereta")
+		player.update_deaths_by_means("teste morte")
+		player.update_penalty_by_means("teste morte")
+		assert_equal(
+		{:name => "glauber_costa",
+		 :kills => 1,
+		 :deaths => 1,
+		 :kills_by_means =>{"bereta" => 1},
+		 :deaths_by_means => {"teste morte" => 1},
+		 :penalty_by_means => {"teste morte" => 1}}, player.to_hash)				
+	end
+
+
+	def test_get_and_set_penalty
+		p = Player.new "glauber_costa"
+		assert_equal({}, p.penalty_by_means)
+		assert_equal(0, p.number_of_penalties)
+		p.update_penalty_by_means("teste morte")
+		assert_equal({"teste morte" => 1}, p.penalty_by_means)
+		p.update_penalty_by_means("queda")
+		assert_equal({"teste morte" => 1,"queda" => 1}, p.penalty_by_means)
+		p.update_penalty_by_means("queda")
+		assert_equal({"teste morte" => 1,"queda" => 2}, p.penalty_by_means)
+		assert_equal(3, p.number_of_penalties)		
+	end
 end
